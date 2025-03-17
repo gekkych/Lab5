@@ -1,0 +1,188 @@
+package s466351.lab5.movie;
+
+import s466351.lab5.exception.IdException;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.time.LocalDate;
+import java.util.*;
+
+/**
+ * Класс для работы с объектами {@link Movie}.
+ * <br> Включает методы автоматической генерации ID, добавления и удаления элементов, сортировки коллекции.
+ */
+@XmlRootElement
+public class MovieDeque {
+    /**
+     * Коллекция {@code ArrayDeque} фильмов.
+     */
+    private ArrayDeque<Movie> movies = new ArrayDeque<>();
+    /**
+     * Коллекция {@code HashSet} ID.
+     */
+    private final Set<Long> idSet = new HashSet<>();
+    /**
+     * Значение минимального доступного ID.
+     */
+    private long nextFreeID;
+    /**
+     * Дата создания коллекции.
+     */
+    private LocalDate creationDate;
+
+    /**
+     * Пустой конструктор для создания объекта.
+     * <br> Также используется для сериализации/десериализации объектов библиотекой JAXB.
+     */
+    public MovieDeque() {
+        nextFreeID = 1;
+        creationDate = LocalDate.now();
+    }
+
+    /**
+     * Добавляет новый фильм в коллекцию.
+     *
+     * @param title       название фильма (не может быть {@code null} или пустой строкой)
+     * @param x           координата X
+     * @param y           координата Y (должно быть меньше 102)
+     * @param genre       жанр фильма (не может быть {@code null})
+     * @param mpaaRating  возрастной рейтинг фильма (может быть {@code null})
+     * @param oscarCount  количество полученных премий Оскар (не должно быть меньше 0)
+     * @param director    режиссёр фильма (может быть {@code null})
+     */
+    public void add(String title, int x, Double y, MovieGenre genre, MpaaRating mpaaRating, int oscarCount, Person director) {
+        Movie.MovieBuilder movieBuilder = new Movie.MovieBuilder(generateID(), title, x, y, genre, oscarCount);
+        if (mpaaRating != null) {
+            movieBuilder.setMpaaRating(mpaaRating);
+        }
+        if (director != null) {
+            if (director.getBirthday() != null) {
+                movieBuilder.setDirector(director.getName(), director.getBirthday(), director.getHeight(), director.getWeight());
+            } else {
+                movieBuilder.setDirector(director.getName(), director.getHeight(), director.getWeight());
+            }
+        }
+        movies.add(movieBuilder.build());
+        sortMovieDeque();
+    }
+
+    /**
+     * Работа с ID, после инициализации коллекции.
+     */
+    public void manageDeque() {
+        int counter = 0;
+        for (Movie movie : movies) {
+            idSet.add(movie.getId());
+            counter++;
+
+            if (idSet.size() != counter) {
+                throw new IdException();
+            }
+        }
+    }
+
+    /**
+     * Генерирует уникальный идентификатор для нового фильма.
+     *
+     * @return уникальный идентификатор фильма
+     */
+    private long generateID() {
+        while (idSet.contains(nextFreeID)) {
+            nextFreeID++;
+        }
+        idSet.add(nextFreeID);
+        return nextFreeID;
+    }
+
+    /**
+     * Сбрасывает счетчик идентификаторов и очищает список занятых ID.
+     * <br> Должен быть использован только при очистке коллекции.
+     */
+    public void resetId() {
+        nextFreeID = 1;
+        idSet.clear();
+    }
+
+    /**
+     * Удаляет фильм по его идентификатору.
+     *
+     * @param id идентификатор фильма, который нужно удалить
+     */
+    public void removeById(long id) {
+        Iterator<Movie> iterator = movies.iterator();
+        while (iterator.hasNext()) {
+            Movie movie = iterator.next();
+            if (movie.getId() == id) {
+                iterator.remove();
+                idSet.remove(id);
+                nextFreeID = Math.min(nextFreeID, id);
+                System.out.println("Фильм успешно удалён из коллекции");
+                return;
+            }
+        }
+        System.out.println("Фильм с ID " + id + " не найден");
+    }
+
+    /**
+     * Сортирует коллекцию фильмов по идентификатору.
+     */
+    public void sortMovieDeque() {
+        ArrayList<Movie> movieList = new ArrayList<>(movies);
+        movieList.sort(Comparator.comparingLong(Movie::getId));
+        movies.clear();
+        movies.addAll(movieList);
+    }
+
+    /**
+     * Устанавливает коллекцию фильмов (приватный).
+     * <br> Используется для десериаллизации.
+     * @param movies коллекция фильмов.
+     */
+    private void setMovies(ArrayDeque<Movie> movies) {
+        this.movies = movies;
+    }
+
+    /**
+     * Возвращает коллекцию фильмов.
+     *
+     * @return коллекция фильмов в виде {@link ArrayDeque}
+     */
+    @XmlElementWrapper(name = "movies")
+    @XmlElement(name = "movie")
+    public ArrayDeque<Movie> getMovies() {
+        return movies;
+    }
+
+    /**
+     * Устанавливает дату создания (приватный).
+     * <br> Используется для десериаллизации.
+     * @param creationDate дата создания коллекции.
+     */
+    private void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+    /**
+     * Возвращает дату создания.
+     *
+     * @return Дата создания
+     */
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Возвращает строковое представление коллекции.
+     *
+     * @return строка с информацией о коллекции
+     */
+    @Override
+    public String toString() {
+        return "Тип ArrayDeque" + "\n" +
+                "Дата создания " + creationDate + "\n" +
+                "Количество элементов " + getMovies().size() + "\n";
+    }
+}
