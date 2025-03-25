@@ -10,7 +10,7 @@ import s466351.lab5.movie.MovieDeque;
  * Использует {@link SaveManager} для выполнения операции сохранения.
  * </p>
  */
-public class SaveCommand extends Command {
+public class SaveCommand extends Command implements Confirmable {
     /**
      * Коллекция фильмов.
      */
@@ -28,7 +28,7 @@ public class SaveCommand extends Command {
      * @param saveManager объект {@link SaveManager} для сохранения коллекции
      */
     public SaveCommand(MovieDeque movies, SaveManager saveManager) {
-        super("save", true);
+        super("save");
         this.movies = movies;
         this.saveManager = saveManager;
     }
@@ -42,7 +42,7 @@ public class SaveCommand extends Command {
      * @param argument аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         saveManager.saveInXML(movies);
         System.out.println("Коллекция сохранена в файл " + saveManager.getFileName());
     }

@@ -157,19 +157,19 @@ import java.util.Scanner;
                     currentCommand = commandMap.get(commandName);
                     commandFound = true;
 
-                    if (currentCommand.isRequiresConfirmation()) {
+                    if ((currentCommand instanceof Confirmable) && ((Confirmable) currentCommand).requiresConfirmation()) {
                         if (!confirmCommand(currentCommand)) {
                             continue;
                         }
                     }
 
                     try {
-                        currentCommand.start(argument);
+                        currentCommand.execute(argument);
                     } catch (CommandException | MovieDequeException e) {
                         System.out.println(e.getMessage());
                     }
 
-                    if (currentCommand.isRequiresExit()) {
+                    if ((currentCommand instanceof Closable) && ((Closable) currentCommand).requiresClose()) {
                         scanner.close();
                         return;
                     }

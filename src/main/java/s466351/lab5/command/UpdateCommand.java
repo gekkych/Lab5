@@ -22,7 +22,7 @@ public class UpdateCommand extends Command {
      * @param movies коллекция фильмов.
      */
     public UpdateCommand(MovieDeque movies) {
-        super("update", false);
+        super("update");
         this.movies = movies;
     }
 
@@ -34,7 +34,7 @@ public class UpdateCommand extends Command {
      * @throws InvalidCommandArgumentException если аргумент не является числом
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         try {
             long id = Long.parseLong(argument.trim());
             for (Movie movie : movies.getMovies()) {

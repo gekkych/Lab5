@@ -20,7 +20,7 @@ public class HelpCommand extends Command {
      * @param commandMap коллекция всех команд.
      */
     public HelpCommand(HashMap<String, Command> commandMap) {
-        super("help", false);
+        super("help");
         this.commandMap = commandMap;
     }
 
@@ -30,7 +30,7 @@ public class HelpCommand extends Command {
      * @param argument Аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         List<String> commandList = new ArrayList<>();
         System.out.println("Доступные команды:");
         for (Command command : commandMap.values()) {

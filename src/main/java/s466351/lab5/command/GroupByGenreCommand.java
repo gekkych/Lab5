@@ -21,7 +21,7 @@ public class GroupByGenreCommand extends Command{
      * @param movies класс для работы с коллекцией.
      */
     public GroupByGenreCommand(MovieDeque movies) {
-        super("group_by_genre", false);
+        super("group_by_genre");
         this.movies = movies;
     }
 
@@ -31,7 +31,7 @@ public class GroupByGenreCommand extends Command{
      * @param argument Аргумент команды, не влияет на выполнение команды.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         ArrayList<String> actionFilms = new ArrayList<>();
         ArrayList<String> comedyFilms = new ArrayList<>();
         ArrayList<String> scifiFilms = new ArrayList<>();

@@ -4,13 +4,13 @@ package s466351.lab5.command;
  * Команда, осуществляющая завершение программы.
  * <br> Требует подтверждение.
  */
-public class ExitCommand extends Command {
+public class ExitCommand extends Command implements Confirmable, Closable {
 
     /**
      * Пустой конструктор.
      */
     public ExitCommand() {
-        super("exit", true);
+        super("exit");
     }
 
     /**
@@ -20,8 +20,7 @@ public class ExitCommand extends Command {
      * @param argument аргумент команды не влияет на исполнение программы.
      */
     @Override
-    public void start(String argument) {
-        requireExit();
+    public void execute(String argument) {
         System.out.println("Программа завершена");
     }
 

@@ -6,19 +6,14 @@ package s466351.lab5.command;
  */
 public abstract class Command implements Comparable<Command> {
     private final String name;
-    private boolean requiresExit;
-    private final boolean requiresConfirmation;
 
     /**
      * Создаёт новую команду.
      *
      * @param name                Название команды.
-     * @param requiresConfirmation Требуется ли подтверждение перед выполнением команды.
      */
-    public Command(String name, boolean requiresConfirmation) {
+    public Command(String name) {
         this.name = name;
-        this.requiresExit = false;
-        this.requiresConfirmation = requiresConfirmation;
     }
 
     /**
@@ -26,7 +21,7 @@ public abstract class Command implements Comparable<Command> {
      *
      * @param argument Аргумент команды.
      */
-    public abstract void start(String argument);
+    public abstract void execute(String argument);
 
     /**
      * Возвращает описание команды.
@@ -54,30 +49,5 @@ public abstract class Command implements Comparable<Command> {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Проверяет, требует ли команда завершения программы.
-     *
-     * @return {@code true}, если команда завершает выполнение программы, иначе {@code false}.
-     */
-    public boolean isRequiresExit() {
-        return requiresExit;
-    }
-
-    /**
-     * Устанавливает значение {@code requiresExit} на {@code true}.
-     */
-    public void requireExit() {
-        requiresExit = true;
-    }
-
-    /**
-     * Проверяет, требуется ли подтверждение перед выполнением команды.
-     *
-     * @return {@code true}, если требуется подтверждение, иначе {@code false}.
-     */
-    public boolean isRequiresConfirmation() {
-        return requiresConfirmation;
     }
 }

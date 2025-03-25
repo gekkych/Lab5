@@ -19,7 +19,7 @@ public class AverageOfOscarCountCommand extends Command {
      * @param movies класс для управления коллекцией.
      */
     public AverageOfOscarCountCommand(MovieDeque movies) {
-        super("average_of_oscar_count", false);
+        super("average_of_oscar_count");
         this.movies = movies;
     }
 
@@ -28,7 +28,7 @@ public class AverageOfOscarCountCommand extends Command {
      * @param argument Аргумент команды.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         double oscarSum = 0;
         for (Movie movie : movies.getMovies()) {
             oscarSum += movie.getOscarsCount();

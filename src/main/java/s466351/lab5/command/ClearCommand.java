@@ -3,11 +3,13 @@ package s466351.lab5.command;
 
 import s466351.lab5.movie.MovieDeque;
 
+import java.util.concurrent.ConcurrentNavigableMap;
+
 /**
  * Полностью очищает коллекцию фильмов и множество ID.
  * <br> Требует подтверждения.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends Command implements Confirmable {
     /**
      * Класс для рапоты с коллекцией.
      */
@@ -19,7 +21,7 @@ public class ClearCommand extends Command {
      * @param movies класс для работы с коллекцией фильмов.
      */
     public ClearCommand(MovieDeque movies) {
-        super("clear", true);
+        super("clear");
         this.movies = movies;
     }
 
@@ -29,7 +31,7 @@ public class ClearCommand extends Command {
      * @param argument Аргумент команды.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         movies.clear();
         System.out.println("Коллекция очищена");
     }

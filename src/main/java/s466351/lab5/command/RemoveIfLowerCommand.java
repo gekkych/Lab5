@@ -9,7 +9,7 @@ import java.util.Iterator;
  * Удаляет все элементы коллекции меньше заданного.\
  * <br> Требует подтверждения.
  */
-public class RemoveIfLowerCommand extends Command{
+public class RemoveIfLowerCommand extends Command implements Confirmable {
     /**
      * Класс для работы с коллекцией фильмов.
      */
@@ -21,7 +21,7 @@ public class RemoveIfLowerCommand extends Command{
      * @param movies класс для работы с коллекцией фильмов.
      */
     public RemoveIfLowerCommand(MovieDeque movies) {
-        super("remove_if_lower", true);
+        super("remove_if_lower");
         this.movies = movies;
     }
 
@@ -32,7 +32,7 @@ public class RemoveIfLowerCommand extends Command{
      * @param argument аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         String title = MovieFieldInput.inputTitle();
         int x = MovieFieldInput.inputX();
         Double y = MovieFieldInput.inputY();

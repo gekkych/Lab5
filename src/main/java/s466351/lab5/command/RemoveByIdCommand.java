@@ -8,7 +8,7 @@ import s466351.lab5.movie.MovieDeque;
  * Удаление элемента коллекции по значению {@code ID}.
  * <br> Требует подтверждение.
  */
-public class RemoveByIdCommand extends Command {
+public class RemoveByIdCommand extends Command implements Confirmable {
     /**
      * Класс для работы с коллекцией фильмов.
      */
@@ -20,7 +20,7 @@ public class RemoveByIdCommand extends Command {
      * @param movies класс для работы с коллекцией.
      */
     public RemoveByIdCommand(MovieDeque movies) {
-        super("remove_by_id", true);
+        super("remove_by_id");
         this.movies = movies;
     }
 
@@ -31,7 +31,7 @@ public class RemoveByIdCommand extends Command {
      * @throws InvalidCommandArgumentException если значение аргумента не является числом.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         try {
             long id = Long.parseLong(argument);
             movies.removeById(id);

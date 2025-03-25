@@ -20,7 +20,7 @@ public class ShowCommand extends Command {
      * @param movieDeque класс для работы с коллекцией.
      */
     public ShowCommand(MovieDeque movieDeque) {
-        super("show", false);
+        super("show");
         this.movieDeque = movieDeque;
     }
 
@@ -29,7 +29,7 @@ public class ShowCommand extends Command {
      * @param argument Аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         if (movieDeque.getMovies().isEmpty()) {
             System.out.println("Пустая коллекция");
         }

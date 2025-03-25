@@ -27,9 +27,9 @@ public class MovieDeque {
     private LocalDate creationDate;
     /**
      * Пустой конструктор для создания объекта.
-     * <br> Также используется для сериализации/десериализации объектов библиотекой JAXB.
      */
     public MovieDeque() {
+        idGenerator = new IdGenerator();
         creationDate = LocalDate.now();
     }
 

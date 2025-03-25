@@ -18,7 +18,7 @@ public class InfoCommand extends Command{
      * @param movies класс для работы с коллекцией
      */
     public InfoCommand(MovieDeque movies) {
-        super("info",  false);
+        super("info");
         this.movies = movies;
     }
 
@@ -27,7 +27,7 @@ public class InfoCommand extends Command{
      * @param arguments Аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String arguments) {
+    public void execute(String arguments) {
         System.out.printf(movies.toString());
     }
 

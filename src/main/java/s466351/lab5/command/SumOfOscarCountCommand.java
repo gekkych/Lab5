@@ -19,7 +19,7 @@ public class SumOfOscarCountCommand extends Command{
      * @param movies класс для работы с коллекцией.
      */
     public SumOfOscarCountCommand(MovieDeque movies) {
-        super("sum_of_oscar_count", false);
+        super("sum_of_oscar_count");
         this.movies = movies;
     }
 
@@ -29,7 +29,7 @@ public class SumOfOscarCountCommand extends Command{
      * @param argument Аргумент команды, не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         int oscarSum = 0;
         for (Movie movie : movies.getMovies()) {
             oscarSum += movie.getOscarsCount();

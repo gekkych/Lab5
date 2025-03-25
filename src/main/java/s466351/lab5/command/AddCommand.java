@@ -18,7 +18,7 @@ public class AddCommand extends Command {
      * @param movies класс для работы с коллекцией.
      */
     public AddCommand(MovieDeque movies) {
-        super("add", false);
+        super("add");
         this.movies = movies;
     }
 
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
      * @param argument Аргумент команды не влияет на выполнение.
      */
     @Override
-    public void start(String argument) {
+    public void execute(String argument) {
         String title = MovieFieldInput.inputTitle();
         int x = MovieFieldInput.inputX();
         Double y = MovieFieldInput.inputY();
