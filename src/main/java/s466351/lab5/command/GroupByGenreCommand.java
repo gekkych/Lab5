@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Группирует и выводит фильмы по значение {@code genre}.
  */
-public class GroupByIdCommand extends Command{
+public class GroupByGenreCommand extends Command{
     /**
      * Класс для работы с коллекцией.
      */
@@ -20,8 +20,8 @@ public class GroupByIdCommand extends Command{
      *
      * @param movies класс для работы с коллекцией.
      */
-    public GroupByIdCommand(MovieDeque movies) {
-        super("group_by_id", false);
+    public GroupByGenreCommand(MovieDeque movies) {
+        super("group_by_genre", false);
         this.movies = movies;
     }
 

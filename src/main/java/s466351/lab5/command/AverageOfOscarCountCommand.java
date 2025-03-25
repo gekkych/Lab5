@@ -33,7 +33,7 @@ public class AverageOfOscarCountCommand extends Command {
         for (Movie movie : movies.getMovies()) {
             oscarSum += movie.getOscarsCount();
         }
-        System.out.println("Среднее количество оскаров " + (oscarSum / (double) movies.getMovies().size()));
+        System.out.printf("Среднее количество оскаров %.2f%n", oscarSum / (double) movies.getMovies().size());
     }
 
     /**

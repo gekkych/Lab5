@@ -30,8 +30,7 @@ public class ClearCommand extends Command {
      */
     @Override
     public void start(String argument) {
-        movies.getMovies().clear();
-        movies.resetId();
+        movies.clear();
         System.out.println("Коллекция очищена");
     }
 

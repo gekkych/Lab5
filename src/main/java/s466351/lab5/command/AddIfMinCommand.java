@@ -54,6 +54,6 @@ public class AddIfMinCommand extends Command{
      */
     @Override
     public String description() {
-        return this.getName() + " - добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции";
+        return this.getName() + " - добавить новый элемент в коллекцию, если его значение не превышает значение наибольшего элемента этой коллекции";
     }
 }

@@ -1,7 +1,5 @@
 package s466351.lab5.movie;
 
-import s466351.lab5.exception.IdException;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,28 +14,22 @@ import java.util.*;
 @XmlRootElement
 public class MovieDeque {
     /**
+     * Класс для работы с ID
+     */
+    private IdGenerator idGenerator;
+    /**
      * Коллекция {@code ArrayDeque} фильмов.
      */
     private ArrayDeque<Movie> movies = new ArrayDeque<>();
     /**
-     * Коллекция {@code HashSet} ID.
-     */
-    private final Set<Long> idSet = new HashSet<>();
-    /**
-     * Значение минимального доступного ID.
-     */
-    private long nextFreeID;
-    /**
      * Дата создания коллекции.
      */
     private LocalDate creationDate;
-
     /**
      * Пустой конструктор для создания объекта.
      * <br> Также используется для сериализации/десериализации объектов библиотекой JAXB.
      */
     public MovieDeque() {
-        nextFreeID = 1;
         creationDate = LocalDate.now();
     }
 
@@ -53,7 +45,7 @@ public class MovieDeque {
      * @param director    режиссёр фильма (может быть {@code null})
      */
     public void add(String title, int x, Double y, MovieGenre genre, MpaaRating mpaaRating, int oscarCount, Person director) {
-        Movie.MovieBuilder movieBuilder = new Movie.MovieBuilder(generateID(), title, x, y, genre, oscarCount);
+        Movie.MovieBuilder movieBuilder = new Movie.MovieBuilder(idGenerator.generateID(), title, x, y, genre, oscarCount);
         if (mpaaRating != null) {
             movieBuilder.setMpaaRating(mpaaRating);
         }
@@ -69,40 +61,10 @@ public class MovieDeque {
     }
 
     /**
-     * Работа с ID, после инициализации коллекции.
+     * Проверка ID в коллекции на уникальность после загрузки коллекции.
      */
     public void manageDeque() {
-        int counter = 0;
-        for (Movie movie : movies) {
-            idSet.add(movie.getId());
-            counter++;
-
-            if (idSet.size() != counter) {
-                throw new IdException();
-            }
-        }
-    }
-
-    /**
-     * Генерирует уникальный идентификатор для нового фильма.
-     *
-     * @return уникальный идентификатор фильма
-     */
-    private long generateID() {
-        while (idSet.contains(nextFreeID)) {
-            nextFreeID++;
-        }
-        idSet.add(nextFreeID);
-        return nextFreeID;
-    }
-
-    /**
-     * Сбрасывает счетчик идентификаторов и очищает список занятых ID.
-     * <br> Должен быть использован только при очистке коллекции.
-     */
-    public void resetId() {
-        nextFreeID = 1;
-        idSet.clear();
+        idGenerator.validateId(movies);
     }
 
     /**
@@ -116,8 +78,7 @@ public class MovieDeque {
             Movie movie = iterator.next();
             if (movie.getId() == id) {
                 iterator.remove();
-                idSet.remove(id);
-                nextFreeID = Math.min(nextFreeID, id);
+                idGenerator.releaseId(id);
                 System.out.println("Фильм успешно удалён из коллекции");
                 return;
             }
@@ -125,6 +86,13 @@ public class MovieDeque {
         System.out.println("Фильм с ID " + id + " не найден");
     }
 
+    /**
+     * Метод для удаления всех элементов коллекции и сброса множества ID
+     */
+    public void clear() {
+        movies.clear();
+        idGenerator.resetId();
+    }
     /**
      * Сортирует коллекцию фильмов по идентификатору.
      */

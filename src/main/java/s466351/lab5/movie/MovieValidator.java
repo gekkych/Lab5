@@ -50,7 +50,7 @@ public class MovieValidator {
      */
     public boolean validateOscarCount(int oscarCount) {
         if(oscarCount <= 0) {
-            throw new MovieFieldNotValidatedException("oscarCount = " + oscarCount + "не должно быть меньше нуля");
+            throw new MovieFieldNotValidatedException("oscarCount = " + oscarCount + " не должно быть меньше нуля");
         }
         return true;
     }
@@ -96,7 +96,7 @@ public class MovieValidator {
      */
     public boolean validateDirectorHeight(int height) {
         if(height <= 0) {
-            throw new MovieFieldNotValidatedException("height = " + height + "не должно быть меньше нуля");
+            throw new MovieFieldNotValidatedException("height = " + height + " не должно быть меньше нуля");
         }
         return true;
     }
@@ -111,7 +111,7 @@ public class MovieValidator {
      */
     public boolean validateDirectorWeight(int weight) {
         if(weight <= 0) {
-            throw new MovieFieldNotValidatedException("weight = " + weight + "не должно быть меньше нуля");
+            throw new MovieFieldNotValidatedException("weight = " + weight + " не должно быть меньше нуля");
         }
         return true;
     }

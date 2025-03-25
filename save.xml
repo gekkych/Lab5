@@ -4,29 +4,52 @@
     <movies>
         <movie>
             <id>1</id>
-            <title>sdg</title>
-            <genre>ACTION</genre>
-            <mpaaRating xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            <director xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <title>Inception</title>
+            <genre>COMEDY</genre>
+            <mpaaRating>NC_17</mpaaRating>
+            <director>
+                <name>Christopher Nolan</name>
+                <birthday xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <height>180</height>
+                <weight>75</weight>
+            </director>
             <oscarsCount>12</oscarsCount>
             <coordinates>
                 <x>12</x>
-                <y>12.0</y>
+                <y>21.0</y>
             </coordinates>
-            <creationDate>2025-03-17T16:21:53.448+03:00</creationDate>
+            <creationDate>2025-03-22T19:08:08.052+03:00</creationDate>
         </movie>
         <movie>
             <id>2</id>
-            <title>asfd</title>
-            <genre>ACTION</genre>
-            <mpaaRating>G</mpaaRating>
+            <title>Star Wars</title>
+            <genre>SCIENCE_FICTION</genre>
+            <mpaaRating>PG</mpaaRating>
             <director xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            <oscarsCount>324</oscarsCount>
+            <oscarsCount>3</oscarsCount>
             <coordinates>
                 <x>12</x>
+                <y>23.0</y>
+            </coordinates>
+            <creationDate>2025-03-22T19:11:48.061+03:00</creationDate>
+        </movie>
+        <movie>
+            <id>3</id>
+            <title>Kill Bill</title>
+            <genre>ACTION</genre>
+            <mpaaRating>NC_17</mpaaRating>
+            <director>
+                <name>Quentin Tarantino</name>
+                <birthday>27-03-1963</birthday>
+                <height>190</height>
+                <weight>87</weight>
+            </director>
+            <oscarsCount>2</oscarsCount>
+            <coordinates>
+                <x>10</x>
                 <y>12.0</y>
             </coordinates>
-            <creationDate>2025-03-17T16:22:22.224+03:00</creationDate>
+            <creationDate>2025-03-22T19:09:54.813+03:00</creationDate>
         </movie>
     </movies>
 </movieDeque>

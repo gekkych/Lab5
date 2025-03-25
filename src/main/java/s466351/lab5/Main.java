@@ -109,7 +109,7 @@ import java.util.Scanner;
             AddIfMaxCommand addIfMax = new AddIfMaxCommand(movies);
             AddIfMinCommand addIfMin = new AddIfMinCommand(movies);
             RemoveIfLowerCommand removeIfLower = new RemoveIfLowerCommand(movies);
-            GroupByIdCommand groupById = new GroupByIdCommand(movies);
+            GroupByGenreCommand groupByGenre = new GroupByGenreCommand(movies);
 
             addCommand(help);
             addCommand(exit);
@@ -125,7 +125,7 @@ import java.util.Scanner;
             addCommand(addIfMax);
             addCommand(addIfMin);
             addCommand(removeIfLower);
-            addCommand(groupById);
+            addCommand(groupByGenre);
         }
 
         /**
