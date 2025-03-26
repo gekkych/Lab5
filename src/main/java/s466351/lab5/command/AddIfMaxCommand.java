@@ -35,7 +35,7 @@ public class AddIfMaxCommand extends Command{
                 throw new MovieCannotBeAddedException("значение oscarCount не максимально.");
             }
         }
-        movies.add(data.title(), data.x(), data.y(), data.genre(), data.rating(), data.oscarCount(), data.director());
+        movies.add(data);
         System.out.println("Фильм успешно добавлен в коллекцию.");
     }
 

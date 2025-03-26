@@ -32,10 +32,10 @@ public class AddIfMinCommand extends Command{
         MovieData data = MovieFieldInput.inputMovieData();
         for(Movie movie : movies.getMovies()) {
             if (data.oscarCount() >= movie.getOscarsCount()) {
-                throw new MovieCannotBeAddedException("значение oscarCount не максимально.");
+                throw new MovieCannotBeAddedException("значение oscarCount не минимально.");
             }
         }
-        movies.add(data.title(), data.x(), data.y(), data.genre(), data.rating(), data.oscarCount(), data.director());
+        movies.add(data);
         System.out.println("Фильм успешно добавлен в коллекцию.");
     }
 

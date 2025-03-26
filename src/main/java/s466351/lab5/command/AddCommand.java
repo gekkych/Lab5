@@ -36,7 +36,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(String argument) {
         MovieData data = MovieFieldInput.inputMovieData();
-        movies.add(data.title(), data.x(), data.y(), data.genre(), data.rating(), data.oscarCount(), data.director());
+        movies.add(data);
         System.out.println("Фильм успешно добавлен в коллекцию.");
     }
 

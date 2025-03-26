@@ -16,7 +16,7 @@ public class MovieDeque {
     /**
      * Класс для работы с ID
      */
-    private IdGenerator idGenerator;
+    private final IdGenerator idGenerator;
     /**
      * Коллекция {@code ArrayDeque} фильмов.
      */
@@ -36,24 +36,19 @@ public class MovieDeque {
     /**
      * Добавляет новый фильм в коллекцию.
      *
-     * @param title       название фильма (не может быть {@code null} или пустой строкой)
-     * @param x           координата X
-     * @param y           координата Y (должно быть меньше 102)
-     * @param genre       жанр фильма (не может быть {@code null})
-     * @param mpaaRating  возрастной рейтинг фильма (может быть {@code null})
-     * @param oscarCount  количество полученных премий Оскар (не должно быть меньше 0)
-     * @param director    режиссёр фильма (может быть {@code null})
+     * @param data содержит информацию о фильме
      */
-    public void add(String title, int x, Double y, MovieGenre genre, MpaaRating mpaaRating, int oscarCount, Person director) {
-        Movie.MovieBuilder movieBuilder = new Movie.MovieBuilder(idGenerator.generateID(), title, x, y, genre, oscarCount);
-        if (mpaaRating != null) {
-            movieBuilder.setMpaaRating(mpaaRating);
+
+    public void add(MovieData data) {
+        Movie.MovieBuilder movieBuilder = new Movie.MovieBuilder(idGenerator.generateID(), data.title(), data.x(), data.y(), data.genre(), data.oscarCount());
+        if (data.rating() != null) {
+            movieBuilder.setMpaaRating(data.rating());
         }
-        if (director != null) {
-            if (director.getBirthday() != null) {
-                movieBuilder.setDirector(director.getName(), director.getBirthday(), director.getHeight(), director.getWeight());
+        if (data.director() != null) {
+            if (data.director().getBirthday() != null) {
+                movieBuilder.setDirector(data.director().getName(), data.director().getBirthday(), data.director().getHeight(), data.director().getWeight());
             } else {
-                movieBuilder.setDirector(director.getName(), director.getHeight(), director.getWeight());
+                movieBuilder.setDirector(data.director().getName(), data.director().getHeight(), data.director().getWeight());
             }
         }
         movies.add(movieBuilder.build());

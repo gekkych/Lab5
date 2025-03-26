@@ -33,18 +33,12 @@ public class RemoveIfLowerCommand extends Command implements Confirmable {
      */
     @Override
     public void execute(String argument) {
-        String title = MovieFieldInput.inputTitle();
-        int x = MovieFieldInput.inputX();
-        Double y = MovieFieldInput.inputY();
-        MovieGenre genre = MovieFieldInput.inputGenre();
-        MpaaRating rating = MovieFieldInput.inputRating();
-        int oscarCount = MovieFieldInput.inputOscarCount();
-        Person director = MovieFieldInput.inputDirector();
+        MovieData data = MovieFieldInput.inputMovieData();
 
         Iterator<Movie> iterator = movies.getMovies().iterator();
         while (iterator.hasNext()) {
             Movie movie = iterator.next();
-            if (oscarCount > movie.getOscarsCount()) {
+            if (data.oscarCount() > movie.getOscarsCount()) {
                 System.out.println("Удалён фильм " + movie.getTitle() + " с айди " + movie.getId());
                 iterator.remove();
             }

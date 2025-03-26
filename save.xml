@@ -51,5 +51,23 @@
             </coordinates>
             <creationDate>2025-03-22T19:09:54.813+03:00</creationDate>
         </movie>
+        <movie>
+            <id>4</id>
+            <title>Shrek</title>
+            <genre>COMEDY</genre>
+            <mpaaRating xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <director>
+                <name>Andrew Adamson</name>
+                <birthday xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <height>180</height>
+                <weight>45</weight>
+            </director>
+            <oscarsCount>100</oscarsCount>
+            <coordinates>
+                <x>12</x>
+                <y>21.0</y>
+            </coordinates>
+            <creationDate>2025-03-26T03:28:32.177+03:00</creationDate>
+        </movie>
     </movies>
 </movieDeque>

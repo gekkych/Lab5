@@ -36,31 +36,24 @@ public class UpdateCommand extends Command {
     @Override
     public void execute(String argument) {
         try {
-            long id = Long.parseLong(argument.trim());
+            long id = Long.parseLong(argument);
             for (Movie movie : movies.getMovies()) {
                 if (movie.getId() == id) {
-                    String title = MovieFieldInput.inputTitle();
-                    int x = MovieFieldInput.inputX();
-                    Double y = MovieFieldInput.inputY();
-                    MovieGenre genre = MovieFieldInput.inputGenre();
-                    MpaaRating rating = MovieFieldInput.inputRating();
-                    int oscarCount = MovieFieldInput.inputOscarCount();
-                    Person director = MovieFieldInput.inputDirector();
+                    MovieData data = MovieFieldInput.inputMovieData();
 
-                    movie.setTitle(title);
-                    movie.setCoordinates(new Coordinates(x, y));
-                    movie.setGenre(genre);
-                    movie.setMpaaRating(rating);
-                    movie.setOscarsCount(oscarCount);
-                    if (director != null) {
-                        movie.setDirector(director);
-                        System.out.println("Фильм успешно обновлён");
-                    }
+                    movie.setTitle(data.title());
+                    movie.setCoordinates(new Coordinates(data.x(), data.y()));
+                    movie.setGenre(data.genre());
+                    movie.setMpaaRating(data.rating());
+                    movie.setOscarsCount(data.oscarCount());
+                    movie.setDirector(data.director());
+
+                    System.out.println("Фильм успешно обновлён");
                     return;
                 }
             }
         } catch (NumberFormatException e) {
-            throw new InvalidCommandArgumentException("Неверный формат ID.");
+            throw new InvalidCommandArgumentException("неверный формат id");
         }
     }
 
