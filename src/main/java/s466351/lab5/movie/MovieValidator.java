@@ -17,7 +17,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение title равно {@code null} или ""
      */
-    public boolean validateTitle(String title) {
+    public static boolean validateTitle(String title) {
         if (title == null || title.isEmpty()) {
             throw new MovieFieldNotValidatedException("title не должно быть null или пустой строкой");
         }
@@ -33,7 +33,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение Y равно {@code null} или больше 102
      */
-    public boolean validateY(Double y) {
+    public static boolean validateY(Double y) {
         if(y == null || y > 102) {
             throw new MovieFieldNotValidatedException("y = " + (y != null ? y : "null") + " не должно быть null или превосходить 102");
         }
@@ -48,7 +48,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение oscarCount меньше нуля
      */
-    public boolean validateOscarCount(int oscarCount) {
+    public static boolean validateOscarCount(int oscarCount) {
         if(oscarCount <= 0) {
             throw new MovieFieldNotValidatedException("oscarCount = " + oscarCount + " не должно быть меньше нуля");
         }
@@ -63,7 +63,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение genre {@code null}
      */
-    public boolean validateGenre(MovieGenre genre) {
+    public static boolean validateGenre(MovieGenre genre) {
         if (genre == null) {
             throw new MovieFieldNotValidatedException("genre не должно быть null");
         }
@@ -79,7 +79,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение directorName равно {@code null} или ""
      */
-    public boolean validateDirectorName(String directorName) {
+    public static boolean validateDirectorName(String directorName) {
         if (directorName == null || directorName.isEmpty()) {
             throw new MovieFieldNotValidatedException("directorName не должно быть null или пустой строкой");
         }
@@ -94,7 +94,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException Если значение height меньше нуля
      */
-    public boolean validateDirectorHeight(int height) {
+    public static boolean validateDirectorHeight(int height) {
         if(height <= 0) {
             throw new MovieFieldNotValidatedException("height = " + height + " не должно быть меньше нуля");
         }
@@ -109,7 +109,7 @@ public class MovieValidator {
      * @return {@code true}, если значение валидно
      * @throws MovieFieldNotValidatedException если значение weight меньше нуля
      */
-    public boolean validateDirectorWeight(int weight) {
+    public static boolean validateDirectorWeight(int weight) {
         if(weight <= 0) {
             throw new MovieFieldNotValidatedException("weight = " + weight + " не должно быть меньше нуля");
         }

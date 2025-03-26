@@ -8,13 +8,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+import static s466351.lab5.movie.MovieValidator.*;
+
 /**
  * Класс для ввода данных о фильме с валидацией.
  * <br> Содержит статические методы для ввода названия, координат, жанра, рейтинга и данных о режиссёре.
  */
 public class MovieFieldInput {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final MovieValidator validator = new MovieValidator();
     static final String GECKO = "\uD83E\uDD8E";
 
     /**
@@ -28,7 +29,7 @@ public class MovieFieldInput {
             System.out.print(GECKO + " > ");
             String title = scanner.nextLine().trim();
             try {
-                if (validator.validateTitle(title)) {
+                if (validateTitle(title)) {
                     return title;
                 }
             } catch (MovieFieldNotValidatedException e) {
@@ -66,7 +67,7 @@ public class MovieFieldInput {
             try {
                 Double y = Double.parseDouble(scanner.nextLine().trim());
                 try {
-                    if (validator.validateY(y)) {
+                    if (validateY(y)) {
                         return y;
                     }
                 } catch (MovieFieldNotValidatedException e) {
@@ -90,7 +91,7 @@ public class MovieFieldInput {
             try {
                 int oscarCount = Integer.parseInt(scanner.nextLine().trim());
                 try {
-                    if (validator.validateOscarCount(oscarCount)) return oscarCount;
+                    if (validateOscarCount(oscarCount)) return oscarCount;
                 } catch (MovieFieldNotValidatedException e) {
                     System.out.println(e.getMessage());
                 }
@@ -117,7 +118,7 @@ public class MovieFieldInput {
                 default -> null;
             };
             try {
-                if (validator.validateGenre(genre)) return genre;
+                if (validateGenre(genre)) return genre;
             } catch (MovieFieldNotValidatedException e) {
                 System.out.println(e.getMessage());
             }
@@ -184,7 +185,7 @@ public class MovieFieldInput {
             System.out.print(GECKO + " > ");
             directorName = scanner.nextLine().trim();
             try {
-                if (validator.validateDirectorName(directorName)) {
+                if (validateDirectorName(directorName)) {
                     break;
                 }
             } catch (MovieFieldNotValidatedException e) {
@@ -213,7 +214,7 @@ public class MovieFieldInput {
             try {
                 height = Integer.parseInt(scanner.nextLine().trim());
                 try {
-                    if (validator.validateDirectorHeight(height)) break;
+                    if (validateDirectorHeight(height)) break;
                 } catch (MovieFieldNotValidatedException e) {
                     System.out.println(e.getMessage());
                 }
@@ -228,7 +229,7 @@ public class MovieFieldInput {
             try {
                 weight = Integer.parseInt(scanner.nextLine().trim());
                 try {
-                    if (validator.validateDirectorWeight(weight)) break;
+                    if (validateDirectorWeight(weight)) break;
                 } catch (MovieFieldNotValidatedException e) {
                     System.out.println(e.getMessage());
                 }

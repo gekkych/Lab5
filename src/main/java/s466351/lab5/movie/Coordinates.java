@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import static s466351.lab5.movie.MovieValidator.*;
+
 /**
  * Класс Coordinates представляет координаты.
  * Используется для хранения данных о координатах объектов.
@@ -11,11 +13,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder = {"x", "y"})
 public class Coordinates {
-
-    /**
-     * Валидатор для проверки значений полей.
-     */
-    private final MovieValidator validator = new MovieValidator();
     /**
      * Координата X.
      */
@@ -57,6 +54,7 @@ public class Coordinates {
      * @return Значение координаты X
      */
     @XmlElement
+
     public int getX() {
         return x;
     }
@@ -67,7 +65,7 @@ public class Coordinates {
      * @param y Новое значение координаты Y (не может быть null, максимум 102)
      */
     public void setY(Double y) {
-        if (validator.validateY(y)) {
+        if (validateY(y)) {
             this.y = y;
         }
     }

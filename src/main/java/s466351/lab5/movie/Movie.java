@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
+import static s466351.lab5.movie.MovieValidator.*;
+
 /**
  * Класс элементов коллекции {@link MovieDeque}.
  * <br>Сравнение объектов происходит по количеству премий Оскар {@code oscarCount}
@@ -17,10 +19,6 @@ import java.util.Objects;
 @XmlRootElement
 @XmlType(propOrder = {"id", "title", "genre", "mpaaRating", "director", "oscarsCount", "coordinates", "creationDate"})
 public class Movie implements Comparable<Movie> {
-    /**
-     * Валидатор содержит методы для проверки полей класса
-     */
-    private final MovieValidator validator = new MovieValidator();
     /**
      * Уникальный идентификатор фильма в коллекции. Генерируется автоматически
      */
@@ -234,7 +232,7 @@ public class Movie implements Comparable<Movie> {
      * @param title название фильма (не должно быть {@code null} или пустой строкой)
      */
     public void setTitle(String title) {
-        if (validator.validateTitle(title)) {
+        if (validateTitle(title)) {
             this.title = title;
         }
     }
@@ -293,7 +291,7 @@ public class Movie implements Comparable<Movie> {
      * @param oscarsCount количество Оскаров (не должно быть меньше 0)
      */
     public void setOscarsCount(int oscarsCount) {
-        if (validator.validateOscarCount(oscarsCount)) {
+        if (validateOscarCount(oscarsCount)) {
             this.oscarsCount = oscarsCount;
         }
     }
@@ -314,7 +312,7 @@ public class Movie implements Comparable<Movie> {
      * @param genre жанр фильма (не должно быть {@code null})
      */
     public void setGenre(MovieGenre genre) {
-        if (validator.validateGenre(genre)) {
+        if (validateGenre(genre)) {
             this.genre = genre;
         }
     }

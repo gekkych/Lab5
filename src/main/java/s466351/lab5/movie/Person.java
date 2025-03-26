@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import s466351.lab5.exception.MovieFieldNotValidatedException;
 
+import static s466351.lab5.movie.MovieValidator.*;
+
 /**
  * Класс Person представляет человека с параметрами имени, даты рождения, роста и веса.
  * Используется для хранения информации о человеке.
@@ -15,10 +17,6 @@ import s466351.lab5.exception.MovieFieldNotValidatedException;
 @XmlRootElement
 @XmlType(propOrder = {"name", "birthday", "height", "weight"})
 public class Person {
-    /**
-     * Валидатор для проверки значений полей.
-     */
-    private final MovieValidator validator = new MovieValidator();
     /**
      * Имя человека. Поле не может быть null и не может быть пустым.
      */
@@ -118,7 +116,7 @@ public class Person {
      * @throws MovieFieldNotValidatedException если имя некорректное
      */
     public void setName(String name) {
-        if (validator.validateDirectorName(name)) {
+        if (validateDirectorName(name)) {
             this.name = name;
         }
     }
@@ -139,7 +137,7 @@ public class Person {
      * @throws MovieFieldNotValidatedException если вес некорректный
      */
     public void setWeight(int weight) {
-        if (validator.validateDirectorWeight(weight)) {
+        if (validateDirectorWeight(weight)) {
             this.weight = weight;
         }
     }
@@ -151,7 +149,7 @@ public class Person {
      * @throws MovieFieldNotValidatedException если рост некорректный
      */
     public void setHeight(int height) {
-        if (validator.validateDirectorHeight(height)) {
+        if (validateDirectorHeight(height)) {
             this.height = height;
         }
     }

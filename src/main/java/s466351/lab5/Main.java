@@ -83,6 +83,7 @@ public class Main {
                 return;
             }
         }
+        System.out.println("Используется файл " + filePath.toAbsolutePath());
 
         saveManager = new SaveManager(filePath.toString());
         input = new InputHandler(commandMap);
