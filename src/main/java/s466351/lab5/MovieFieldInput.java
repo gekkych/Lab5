@@ -250,6 +250,7 @@ public class MovieFieldInput {
      * @return объект MovieData с введёнными пользователем данными
      */
     public static MovieData inputMovieData() {
+
         return new MovieData(
                 inputTitle(),
                 inputX(),
@@ -259,5 +260,6 @@ public class MovieFieldInput {
                 inputOscarCount(),
                 inputDirector()
         );
+
     }
 }

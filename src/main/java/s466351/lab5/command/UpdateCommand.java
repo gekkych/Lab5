@@ -7,7 +7,7 @@ import s466351.lab5.movie.*;
 /**
  * Команда для обновления информации о фильме в коллекции по его ID.
  */
-public class UpdateCommand extends Command {
+public class UpdateCommand extends Command implements MovieDataReceiver {
     /**
      * Коллекция фильмов.
      */
@@ -35,13 +35,11 @@ public class UpdateCommand extends Command {
      * @throws InvalidCommandArgumentException если аргумент не является числом
      */
     @Override
-    public String execute(String argument) {
+    public String execute(String argument, MovieData data) {
         try {
             long id = Long.parseLong(argument);
             for (Movie movie : movies.getMovies()) {
                 if (movie.getId() == id) {
-                    MovieData data = MovieFieldInput.inputMovieData();
-
                     movie.setTitle(data.title());
                     movie.setCoordinates(new Coordinates(data.x(), data.y()));
                     movie.setGenre(data.genre());
@@ -56,6 +54,11 @@ public class UpdateCommand extends Command {
         } catch (NumberFormatException e) {
             throw new InvalidCommandArgumentException("неверный формат id");
         }
+    }
+
+    @Override
+    public String execute(String argument) {
+        return "Нужно использовать execute(String, MovieData)";
     }
 
     /**

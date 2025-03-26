@@ -9,7 +9,7 @@ import java.util.Iterator;
  * Удаляет все элементы коллекции меньше заданного.\
  * <br> Требует подтверждения.
  */
-public class RemoveIfLowerCommand extends Command implements Confirmable {
+public class RemoveIfLowerCommand extends Command implements Confirmable, MovieDataReceiver {
     /**
      * Класс для работы с коллекцией фильмов.
      */
@@ -34,8 +34,7 @@ public class RemoveIfLowerCommand extends Command implements Confirmable {
      * @return Результат выполнения команды.
      */
     @Override
-    public String execute(String argument) {
-        MovieData data = MovieFieldInput.inputMovieData();
+    public String execute(String argument, MovieData data) {
         StringBuilder result = new StringBuilder();
 
         Iterator<Movie> iterator = movies.getMovies().iterator();
@@ -50,6 +49,11 @@ public class RemoveIfLowerCommand extends Command implements Confirmable {
             return "Фильмов меньше данного не найдено";
         }
         return result.toString();
+    }
+
+    @Override
+    public String execute(String argument) {
+        return "Нужно использовать execute(String, MovieData)";
     }
 
     /**

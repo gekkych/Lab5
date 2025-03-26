@@ -6,7 +6,7 @@ import s466351.lab5.movie.*;
 /**
  * Добавление нового элемента в коллекцию.
  */
-public class AddCommand extends Command {
+public class AddCommand extends Command implements MovieDataReceiver {
     /**
      * Класс для работы с коллекцией.
      */
@@ -29,10 +29,14 @@ public class AddCommand extends Command {
      * @return Результат выполнения команды.
      */
     @Override
-    public String execute(String argument) {
-        MovieData data = MovieFieldInput.inputMovieData();
+    public String execute(String argument, MovieData data) {
         movies.add(data);
         return "Фильм успешно добавлен в коллекцию.";
+    }
+
+    @Override
+    public String execute(String argument) {
+        return "Нужно использовать execute(String, MovieData)";
     }
 
     /**

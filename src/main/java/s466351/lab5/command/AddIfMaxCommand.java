@@ -7,7 +7,7 @@ import s466351.lab5.movie.*;
 /**
  * Добавление нового элемента в коллекцию, если его значение {@code oscarCount} максимально в коллекции.
  */
-public class AddIfMaxCommand extends Command{
+public class AddIfMaxCommand extends Command implements MovieDataReceiver {
     /**
      * Класс для работы с коллекцией.
      */
@@ -30,8 +30,7 @@ public class AddIfMaxCommand extends Command{
      * @return Результат выполнения команды.
      */
     @Override
-    public String execute(String argument) {
-        MovieData data = MovieFieldInput.inputMovieData();
+    public String execute(String argument, MovieData data) {
         for(Movie movie : movies.getMovies()) {
             if (data.oscarCount() <= movie.getOscarsCount()) {
                 throw new MovieCannotBeAddedException("значение oscarCount не максимально.");
@@ -39,6 +38,11 @@ public class AddIfMaxCommand extends Command{
         }
         movies.add(data);
         return "Фильм успешно добавлен в коллекцию.";
+    }
+
+    @Override
+    public String execute(String argument) {
+        return "Нужно использовать execute(String, MovieData)";
     }
 
     /**
