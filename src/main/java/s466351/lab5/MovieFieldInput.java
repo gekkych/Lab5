@@ -1,10 +1,7 @@
 package s466351.lab5;
 
 import s466351.lab5.exception.MovieFieldNotValidatedException;
-import s466351.lab5.movie.MovieGenre;
-import s466351.lab5.movie.MovieValidator;
-import s466351.lab5.movie.MpaaRating;
-import s466351.lab5.movie.Person;
+import s466351.lab5.movie.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -244,5 +241,23 @@ public class MovieFieldInput {
         } else {
             return new Person(directorName, height, weight);
         }
+    }
+
+    /**
+     * Запрашивает у пользователя данные о фильме и возвращает их в виде объекта {@link MovieData}.
+     * Использует методы класса для ввода каждого поля.
+     *
+     * @return объект MovieData с введёнными пользователем данными
+     */
+    public static MovieData inputMovieData() {
+        return new MovieData(
+                inputTitle(),
+                inputX(),
+                inputY(),
+                inputGenre(),
+                inputRating(),
+                inputOscarCount(),
+                inputDirector()
+        );
     }
 }

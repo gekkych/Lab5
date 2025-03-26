@@ -29,20 +29,13 @@ public class AddIfMinCommand extends Command{
      */
     @Override
     public void execute(String argument) {
-        int oscarCount = MovieFieldInput.inputOscarCount();
+        MovieData data = MovieFieldInput.inputMovieData();
         for(Movie movie : movies.getMovies()) {
-            if (oscarCount >= movie.getOscarsCount()) {
-                throw new MovieCannotBeAddedException("значение oscarCount не минимально.");
+            if (data.oscarCount() >= movie.getOscarsCount()) {
+                throw new MovieCannotBeAddedException("значение oscarCount не максимально.");
             }
         }
-        String title = MovieFieldInput.inputTitle();
-        int x = MovieFieldInput.inputX();
-        Double y = MovieFieldInput.inputY();
-        MovieGenre genre = MovieFieldInput.inputGenre();
-        MpaaRating rating = MovieFieldInput.inputRating();
-        Person director = MovieFieldInput.inputDirector();
-
-        movies.add(title, x, y, genre, rating, oscarCount, director);
+        movies.add(data.title(), data.x(), data.y(), data.genre(), data.rating(), data.oscarCount(), data.director());
         System.out.println("Фильм успешно добавлен в коллекцию.");
     }
 
