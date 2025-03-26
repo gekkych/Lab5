@@ -23,12 +23,15 @@ public class InfoCommand extends Command{
     }
 
     /**
-     * Выводит строковое представление MovieDeque
+     * Возвращает строковое представление MovieDeque
+     *
      * @param arguments Аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String arguments) {
-        System.out.printf(movies.toString());
+    public String execute(String arguments) {
+        return movies.toString();
     }
 
     /**

@@ -11,13 +11,6 @@ public class AddCommand extends Command {
      * Класс для работы с коллекцией.
      */
     private final MovieDeque movies;
-    private String title;
-    private int x;
-    private Double y;
-    private MovieGenre genre;
-    private MpaaRating rating;
-    private int oscarCount;
-    private Person director;
     /**
      * Конструктор.
      *
@@ -32,12 +25,14 @@ public class AddCommand extends Command {
      * Запрашивает ввод у пользователя, валидирует поля и добавляет элемент в коллекцию.
      *
      * @param argument Аргумент команды не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         MovieData data = MovieFieldInput.inputMovieData();
         movies.add(data);
-        System.out.println("Фильм успешно добавлен в коллекцию.");
+        return "Фильм успешно добавлен в коллекцию.";
     }
 
     /**

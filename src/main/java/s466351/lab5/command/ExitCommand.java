@@ -18,10 +18,12 @@ public class ExitCommand extends Command implements Confirmable, Closable {
      * <br> Метод {@code isRequiresExit()} теперь возвращает true.
      *
      * @param argument аргумент команды не влияет на исполнение программы.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
-        System.out.println("Программа завершена");
+    public String execute(String argument) {
+        return "Программа завершена";
     }
 
     /**

@@ -27,15 +27,19 @@ public class ShowCommand extends Command {
     /**
      * Проверяет наличие элементов в коллекции и выводит строковое представление каждого элемента.
      * @param argument Аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
+        StringBuilder result = new StringBuilder();
         if (movieDeque.getMovies().isEmpty()) {
-            System.out.println("Пустая коллекция");
+            return "Пустая коллекция";
         }
         for(Movie movie : movieDeque.getMovies()) {
-            System.out.println(movie.toString());
+            result.append(movie.toString()).append("\n");
         }
+        return result.toString();
     }
 
     /**

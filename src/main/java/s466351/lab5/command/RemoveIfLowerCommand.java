@@ -30,19 +30,26 @@ public class RemoveIfLowerCommand extends Command implements Confirmable {
      * <br> Удаляет все, что меньше.
      *
      * @param argument аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         MovieData data = MovieFieldInput.inputMovieData();
+        StringBuilder result = new StringBuilder();
 
         Iterator<Movie> iterator = movies.getMovies().iterator();
         while (iterator.hasNext()) {
             Movie movie = iterator.next();
             if (data.oscarCount() > movie.getOscarsCount()) {
-                System.out.println("Удалён фильм " + movie.getTitle() + " с айди " + movie.getId());
+                result.append("Удалён фильм ").append(movie.getTitle()).append(" с айди ").append(movie.getId());
                 iterator.remove();
             }
         }
+        if (result.isEmpty()) {
+            return "Фильмов меньше данного не найдено";
+        }
+        return result.toString();
     }
 
     /**

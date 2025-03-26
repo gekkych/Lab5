@@ -18,7 +18,7 @@ public class AddIfMinCommand extends Command{
      * @param movies класс для работы с коллекцией.
      */
     public AddIfMinCommand(MovieDeque movies) {
-        super("add_if_max");
+        super("add_if_min");
         this.movies = movies;
     }
 
@@ -26,9 +26,11 @@ public class AddIfMinCommand extends Command{
      * Запрашивает ввод у пользователя, валидирует поля и добавляет элемент в коллекцию, если его значение {@code oscarCount} минимально в коллекции.
      *
      * @param argument Аргумент команды не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         MovieData data = MovieFieldInput.inputMovieData();
         for(Movie movie : movies.getMovies()) {
             if (data.oscarCount() >= movie.getOscarsCount()) {
@@ -36,7 +38,7 @@ public class AddIfMinCommand extends Command{
             }
         }
         movies.add(data);
-        System.out.println("Фильм успешно добавлен в коллекцию.");
+        return "Фильм успешно добавлен в коллекцию.";
     }
 
 

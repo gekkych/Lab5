@@ -31,10 +31,11 @@ public class UpdateCommand extends Command {
      * <br> Если фильм с указанным ID не найден, выводится соответствующее сообщение.
      *
      * @param argument ID фильма, который требуется обновить
+     * @return Результат выполнения команды.
      * @throws InvalidCommandArgumentException если аргумент не является числом
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         try {
             long id = Long.parseLong(argument);
             for (Movie movie : movies.getMovies()) {
@@ -48,10 +49,10 @@ public class UpdateCommand extends Command {
                     movie.setOscarsCount(data.oscarCount());
                     movie.setDirector(data.director());
 
-                    System.out.println("Фильм успешно обновлён");
-                    return;
+                    return "Фильм успешно обновлён";
                 }
             }
+            return "ID не найден";
         } catch (NumberFormatException e) {
             throw new InvalidCommandArgumentException("неверный формат id");
         }

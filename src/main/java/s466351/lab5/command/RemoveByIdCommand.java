@@ -28,13 +28,17 @@ public class RemoveByIdCommand extends Command implements Confirmable {
      * Удаление элемента коллекции с заданным ID.
      *
      * @param argument ID, по значении которого нужно удалить элемент.
+     *
+     * @return Результат выполнения команды.
+     *
      * @throws InvalidCommandArgumentException если значение аргумента не является числом.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         try {
             long id = Long.parseLong(argument);
             movies.removeById(id);
+            return "Фильм с id " + id + " удалён.";
         } catch (NumberFormatException e) {
             throw new InvalidCommandArgumentException("неверный формат id");
         }

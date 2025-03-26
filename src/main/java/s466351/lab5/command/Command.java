@@ -21,7 +21,7 @@ public abstract class Command implements Comparable<Command> {
      *
      * @param argument Аргумент команды.
      */
-    public abstract void execute(String argument);
+    public abstract String execute(String argument);
 
     /**
      * Возвращает описание команды.

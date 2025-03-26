@@ -27,14 +27,16 @@ public class SumOfOscarCountCommand extends Command{
      * Складывает значение {@code oscarCount} всех элементов и выводит его.
      *
      * @param argument Аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         int oscarSum = 0;
         for (Movie movie : movies.getMovies()) {
             oscarSum += movie.getOscarsCount();
         }
-        System.out.println("Сумма всех оскаров " + oscarSum);
+        return "Сумма всех оскаров " + oscarSum;
     }
 
     /**

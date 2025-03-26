@@ -29,12 +29,15 @@ public class GroupByGenreCommand extends Command{
      * Группирует фильмы в три {@code ArrayList}, после если они не пусты выводит их.
      *
      * @param argument Аргумент команды, не влияет на выполнение команды.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         ArrayList<String> actionFilms = new ArrayList<>();
         ArrayList<String> comedyFilms = new ArrayList<>();
         ArrayList<String> scifiFilms = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
         for (Movie movie : movies.getMovies()) {
             if (movie.getGenre() == null) continue;
             switch (movie.getGenre()) {
@@ -44,23 +47,24 @@ public class GroupByGenreCommand extends Command{
             }
         }
         if (!actionFilms.isEmpty()) {
-            System.out.println("Боевики:");
+            result.append("Боевики: ").append("\n");
             for (String s : actionFilms) {
-                System.out.println(s);
+                result.append(s).append("\n");
             }
         }
         if (!comedyFilms.isEmpty()) {
-            System.out.println("Комедии: ");
+            result.append("Комедии: ").append("\n");
             for (String s : comedyFilms) {
-                System.out.println(s);
+                result.append(s).append("\n");
             }
         }
         if (!scifiFilms.isEmpty()) {
-            System.out.println("Научная фантастика: ");
+            result.append("Научная фантастика: ").append("\n");
             for (String s : scifiFilms) {
-                System.out.println(s);
+                result.append(s).append("\n");
             }
         }
+        return result.toString();
     }
 
     /**

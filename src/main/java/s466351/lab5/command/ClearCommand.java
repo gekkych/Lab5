@@ -29,11 +29,13 @@ public class ClearCommand extends Command implements Confirmable {
      * Удаляет все элементы коллекции, очищает список занятых ID и сбрасывает счётчик ID.
      *
      * @param argument Аргумент команды.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         movies.clear();
-        System.out.println("Коллекция очищена");
+        return "Коллекция очищена";
     }
 
     /**

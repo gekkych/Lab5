@@ -25,21 +25,25 @@ public class HelpCommand extends Command {
     }
 
     /**
-     * Создаёт массив, состоящий из вывода {@code description()} и выводит его.
+     * Создаёт массив, состоящий из вывода {@code description()}.
      *
      * @param argument Аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
+        StringBuilder result = new StringBuilder();
         List<String> commandList = new ArrayList<>();
-        System.out.println("Доступные команды:");
+        result.append("Доступные команды: ").append("\n");
         for (Command command : commandMap.values()) {
             commandList.add(command.description());
         }
         Collections.sort(commandList);
         for (String description : commandList) {
-            System.out.println(description);
+            result.append(description).append("\n");
         }
+        return result.toString();
     }
 
     /**

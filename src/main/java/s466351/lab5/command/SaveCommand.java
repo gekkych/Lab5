@@ -40,11 +40,13 @@ public class SaveCommand extends Command implements Confirmable {
      * </p>
      *
      * @param argument аргумент команды, не влияет на выполнение.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
         saveManager.saveInXML(movies);
-        System.out.println("Коллекция сохранена в файл " + saveManager.getFileName());
+        return "Коллекция сохранена в файл " + saveManager.getFileName();
     }
 
     /**

@@ -26,14 +26,20 @@ public class AverageOfOscarCountCommand extends Command {
     /**
      * Суммирует количество оскаров каждого фильма и выводит среднее значение.
      * @param argument Аргумент команды.
+     *
+     * @return Результат выполнения команды.
      */
     @Override
-    public void execute(String argument) {
+    public String execute(String argument) {
+        if (movies.getMovies().isEmpty()) {
+            return "Коллекция фильмов пуста";
+        }
         double oscarSum = 0;
         for (Movie movie : movies.getMovies()) {
             oscarSum += movie.getOscarsCount();
         }
-        System.out.printf("Среднее количество оскаров %.2f%n", oscarSum / (double) movies.getMovies().size());
+        double average = oscarSum / movies.getMovies().size();
+        return String.format("Среднее количество оскаров %.2f%n", average);
     }
 
     /**
