@@ -1,6 +1,5 @@
 package s466351.lab5.command;
 
-import s466351.lab5.MovieFieldInput;
 import s466351.lab5.movie.*;
 
 /**

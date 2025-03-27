@@ -52,7 +52,7 @@ public class IdGenerator {
      */
     public void releaseId(long id) {
         if(!idSet.remove(id)) {
-            throw new IdException();
+            throw new IdException("ID не найден.");
         }
         nextFreeID = Math.min(nextFreeID, id);
     }
@@ -67,7 +67,7 @@ public class IdGenerator {
             counter++;
 
             if (idSet.size() != counter) {
-                throw new IdException();
+                throw new IdException("Коллизия ID.");
             }
         }
     }

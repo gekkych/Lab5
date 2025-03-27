@@ -1,5 +1,7 @@
 package s466351.lab5.movie;
 
+import s466351.lab5.exception.IdException;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -78,7 +80,7 @@ public class MovieDeque {
                 return;
             }
         }
-        System.out.println("Фильм с ID " + id + " не найден");
+        throw new IdException("ID не найден.");
     }
 
     /**

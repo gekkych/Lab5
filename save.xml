@@ -22,16 +22,21 @@
         </movie>
         <movie>
             <id>2</id>
-            <title>Star Wars</title>
-            <genre>SCIENCE_FICTION</genre>
-            <mpaaRating>PG</mpaaRating>
-            <director xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            <oscarsCount>3</oscarsCount>
+            <title>Hui</title>
+            <genre>COMEDY</genre>
+            <mpaaRating>NC_17</mpaaRating>
+            <director>
+                <name>Hui Production</name>
+                <birthday xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <height>220</height>
+                <weight>80</weight>
+            </director>
+            <oscarsCount>10000</oscarsCount>
             <coordinates>
                 <x>12</x>
                 <y>23.0</y>
             </coordinates>
-            <creationDate>2025-03-22T19:11:48.061+03:00</creationDate>
+            <creationDate>2025-03-27T09:49:52.916+03:00</creationDate>
         </movie>
         <movie>
             <id>3</id>

@@ -3,8 +3,6 @@ package s466351.lab5.command;
 
 import s466351.lab5.movie.MovieDeque;
 
-import java.util.concurrent.ConcurrentNavigableMap;
-
 /**
  * Полностью очищает коллекцию фильмов и множество ID.
  * <br> Требует подтверждения.

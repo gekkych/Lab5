@@ -83,7 +83,7 @@ public class Person {
      *
      * @return Дата рождения или null
      */
-    @XmlElement(nillable = true)
+    @XmlElement(nillable = true, required = false)
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getBirthday() {
         return birthday;
