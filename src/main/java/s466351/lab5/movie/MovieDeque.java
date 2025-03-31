@@ -62,6 +62,7 @@ public class MovieDeque {
      */
     public void manageDeque() {
         idGenerator.validateId(movies);
+        sortMovieDeque();
     }
 
     /**

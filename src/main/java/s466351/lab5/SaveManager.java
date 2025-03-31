@@ -2,6 +2,7 @@ package s466351.lab5;
 
 
 import s466351.lab5.exception.CommandException;
+import s466351.lab5.exception.MovieDequeException;
 import s466351.lab5.movie.MovieDeque;
 import s466351.lab5.movie.MovieValidator;
 
@@ -38,11 +39,6 @@ public class SaveManager {
      * Файл, используемый для хранения коллекции фильмов.
      */
     File file;
-
-    /**
-     * Валидатор для проверки корректности данных фильма.
-     */
-    MovieValidator validator = new MovieValidator();
 
     /**
      * Конструктор создает менеджер сохранения с указанным путем к файлу.
@@ -108,8 +104,7 @@ public class SaveManager {
 
             return result;
         } catch (JAXBException | FileNotFoundException e) {
-            System.out.println("Ошибка при загрузке, создана новая коллекция");
-            return new MovieDeque();
+            throw new MovieDequeException("Возможно XML файл повреждён. " + file.getAbsolutePath());
         }
     }
 
@@ -126,9 +121,7 @@ public class SaveManager {
             marshaller.marshal(movies, stringWriter);
             return stringWriter;
         } catch (JAXBException e) {
-            e.printStackTrace();
-            System.out.println("Ошибка при сериализации");
-            throw new RuntimeException();
+            throw new CommandException("Ошибка при сериализации.");
         }
     }
 

@@ -3,6 +3,7 @@ package s466351.lab5.movie;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
@@ -262,6 +263,7 @@ public class Movie implements Comparable<Movie> {
      * @return дата создания
      */
     @XmlElement
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public Date getCreationDate() {
         return creationDate;
     }
@@ -410,7 +412,10 @@ public class Movie implements Comparable<Movie> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("(").append(id).append(")").append(" ").append(title).append("   Жанр ").append(getGenre()).append("   Количество Оскаров ").append(oscarsCount);
+        builder.append("(").append(id).append(")").append(" ")
+                .append(title)
+                .append("   Жанр ").append(getGenre())
+                .append("   Количество Оскаров ").append(oscarsCount);
         if (mpaaRating != null) {
             builder.append("    Возрастное ограничение ").append(mpaaRating);
         }
@@ -420,6 +425,7 @@ public class Movie implements Comparable<Movie> {
                 builder.append(" ").append(director.getBirthday());
             }
         }
+        builder.append("    ").append(creationDate);
         return builder.toString();
     }
 
